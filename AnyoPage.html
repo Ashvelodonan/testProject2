@@ -9,13 +9,15 @@
 </head>
 <body>
     <header>        
-        <div class="balsigLogoContainer">
+        <div id="balsigLogoContainer" class="balsigLogoContainer">
             <!-- <img class="balsigLogo" src="https://scontent.fdxb3-2.fna.fbcdn.net/v/t1.15752-9/461024937_3773634782853051_8183340448530066698_n.png?_nc_cat=100&ccb=1-7&_nc_sid=9f807c&_nc_ohc=65CVZhRg6SQQ7kNvgFcZLlO&_nc_ht=scontent.fdxb3-2.fna&oh=03_Q7cD1QEYrjYFs26Dq4N1qzRJBuUAfcI2OYHHGmJzyYWUNJgJbg&oe=671C68A0" alt="balsig logo"> -->
-            <img class="balsigLogo" src="https://scontent.fdxb3-1.fna.fbcdn.net/v/t1.15752-9/459424739_835318588684949_2309106643168217924_n.png?_nc_cat=110&ccb=1-7&_nc_sid=9f807c&_nc_ohc=AVRM50iOSSUQ7kNvgG7r06j&_nc_ht=scontent.fdxb3-1.fna&oh=03_Q7cD1QGkl0ZE4fJTVDU-3a4twl4oUImop9Y2VqTJWfOy29JcCg&oe=671C7F63" alt="balsig logo">
+            <!-- <img class="balsigLogo" src="https://scontent.fdxb3-1.fna.fbcdn.net/v/t1.15752-9/459424739_835318588684949_2309106643168217924_n.png?_nc_cat=110&ccb=1-7&_nc_sid=9f807c&_nc_ohc=AVRM50iOSSUQ7kNvgG7r06j&_nc_ht=scontent.fdxb3-1.fna&oh=03_Q7cD1QGkl0ZE4fJTVDU-3a4twl4oUImop9Y2VqTJWfOy29JcCg&oe=671C7F63" alt="balsig logo"> -->
             <!-- <img class="balsigLogo" src="https://scontent.fdxb3-1.fna.fbcdn.net/v/t1.15752-9/459424739_548867121008548_8572645029645546135_n.png?_nc_cat=109&ccb=1-7&_nc_sid=9f807c&_nc_ohc=G_uDPyEEshEQ7kNvgHjYXBo&_nc_ht=scontent.fdxb3-1.fna&_nc_gid=AyUuNGvmseExtockS495QLH&oh=03_Q7cD1QEQiQv9N2P1BKPw5zQk9lRhO3DADh4hgDB3HjdYL3RLOg&oe=671C7095" alt="balsig logo"> -->
+            <img class="balsigLogo" src="static/images/BALSIG_circle.png" alt="balsig logo">
         </div>
         <!-- <h1 id="app_title"></h1> -->
         <hr>
+        <div id="currentDate"></div>
         <div class="customTitleDiv">
             <input class="customTitleInput" id="customTitleInput" type="text" placeholder="input title">
             <div style="margin: 50px;">
@@ -26,6 +28,7 @@
 
     <main>        
         <div id="head_buttons">
+            <button type="button" id="print_button">print</button>
             <div>Rematch Round: <span id="rematchRoundIndicator"></span></div>
             <button type="button" id="viewTable_button">View</button>
             <button type="button" id="addNewTable_button">Rematch</button>
@@ -92,6 +95,7 @@
     <script src="main.js"></script>
     <script src="stopwatch.js"></script>
     <script src="rematch.js"></script>
+    <script src="print.js"></script>
     <!-- <script src="rematchfunc.js"></script> -->
 </body>
 </html>

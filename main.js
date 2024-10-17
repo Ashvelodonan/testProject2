@@ -25,7 +25,7 @@ let calculateButton = document.getElementById("calculate_button");
 let generateRowsButton = document.getElementById("generateNumRows");
 let desiredNumRowsInput = document.getElementById("desiredNumberOfRows");
 let customTitleInput = document.getElementById("customTitleInput");
-document.getElementById("desiredNumberOfRows").value = 10;
+document.getElementById("desiredNumberOfRows").value = 0; //testing set
 
 //functions
 //
@@ -34,7 +34,7 @@ var currentIndex = myTable.rows.length;
 
 function addRowField() {    
     var currentRow = myTable.insertRow(-1);
-    rowNumberValue += 1;
+    rowNumberValue ++;
     currentRow.id = "tr_"+rowNumberValue;
     totalNumberRows.textContent = rowNumberValue;
 //cells.create
@@ -209,37 +209,40 @@ function addRowField() {
 
     console.log(`rowNumberValue: ${rowNumberValue}`);
     
-    competitor_name.value = "Player "+rowNumberValue;
+    //testingPurpose
+    // competitor_name.value = "Player "+rowNumberValue;
     
-    let min = 1;
-    let max = 10;    
+    // let min = 1;
+    // let max = 10;    
     // judgeScore_Second.setAttribute("value", Math.floor(Math.random() * max) + min);
     
-    judgeScore_First.setAttribute("value", (Math.random() * max).toFixed(1));
-    judgeScore_Second.setAttribute("value", (Math.random() * max).toFixed(1));
-    judgeScore_Third.setAttribute("value", (Math.random() * max).toFixed(1));
-    judgeScore_Fourth.setAttribute("value", (Math.random() * max).toFixed(1));
-    judgeScore_Fifth.setAttribute("value", (Math.random() * max).toFixed(1));
+    // judgeScore_First.setAttribute("value", (Math.random() * max).toFixed(1));
+    // judgeScore_Second.setAttribute("value", (Math.random() * max).toFixed(1));
+    // judgeScore_Third.setAttribute("value", (Math.random() * max).toFixed(1));
+    // judgeScore_Fourth.setAttribute("value", (Math.random() * max).toFixed(1));
+    // judgeScore_Fifth.setAttribute("value", (Math.random() * max).toFixed(1));
 
-    if (judgeScore_First.value == 10.0) {
-        judgeScore_First.value = 10
-    }
+    // if (judgeScore_First.value == 10.0) {
+    //     judgeScore_First.value = 10
+    // }
 
-    if (judgeScore_Second.value == 10.0) {
-        judgeScore_Second.value = 10
-    }
+    // if (judgeScore_Second.value == 10.0) {
+    //     judgeScore_Second.value = 10
+    // }
 
-    if (judgeScore_Third.value == 10.0) {
-        judgeScore_Third.value = 10
-    }
+    // if (judgeScore_Third.value == 10.0) {
+    //     judgeScore_Third.value = 10
+    // }
 
-    if (judgeScore_Fourth.value == 10.0) {
-        judgeScore_Fourth.value = 10
-    }
+    // if (judgeScore_Fourth.value == 10.0) {
+    //     judgeScore_Fourth.value = 10
+    // }
 
-    if (judgeScore_Fifth.value == 10.0) {
-        judgeScore_Fifth.value = 10
-    }
+    // if (judgeScore_Fifth.value == 10.0) {
+    //     judgeScore_Fifth.value = 10
+    // }
+
+    //ENDTestingPurpose
 
     // saveElement in Array
     checkBox_element[rowNumberValue-1] = [toSelectCheckInput];
@@ -380,7 +383,7 @@ function addRowField() {
     }
     //ENDAddEventListener
 };
-addRowField();
+// addRowField();
 
 function updateChWidths() {
     let maxChLength = 0;
@@ -424,9 +427,9 @@ function removeRowField() {
         totalNumberRows.textContent = rowNumberValue;
     }
 
-    if (rowNumberValue < 1) {
-        addRowField();
-    }
+    // if (rowNumberValue < 1) {
+    //     addRowField();
+    // }
 };
 //functions
 //END
@@ -659,21 +662,32 @@ generateRowsButton.addEventListener("click", () => {
     } else {
         console.clear();
         let currentRowNumberValue = rowNumberValue;
+        console.log(currentRowNumberValue);
         desiredNumRowsValue = desiredNumRowsInput.value;
-        if (rowNumberValue >= 1) {
+        if (rowNumberValue > 0) {
             for (i = 0; i < currentRowNumberValue; i++) {
                 removeRowField();
                 console.clear();
-            }
+            }            
+            // rowNumberValue = 0;
         }
 
-        for (i = 0; i < desiredNumRowsValue - 1; i++) {
+        for (i = 0; i < desiredNumRowsValue; i++) {
             addRowField();
         }
         desiredNumRowsInput.value = "";
     }    
 });
-generateRowsButton.click();
+// generateRowsButton.click();
+
+desiredNumRowsInput.addEventListener("input", () => {
+    // console.log(desiredNumRowsInput.value);
+    if (parseInt(desiredNumRowsInput.value) < 0) {
+        desiredNumRowsInput.value = 0;
+    } else if (parseInt(desiredNumRowsInput.value) > 200) {
+        desiredNumRowsInput.value = 200;
+    }
+});
 
 addRowFieldButton.addEventListener("click", () => {
     addRowField();
