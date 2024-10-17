@@ -410,33 +410,34 @@ function addRematchTable() { //addRematchTable
                 //END targetElement
 
                 // randomScores Rematch
-                let min = 1;
-                let max = 10;    
-                targetElement_judgeScore_First_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
-                targetElement_judgeScore_Second_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
-                targetElement_judgeScore_Third_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
-                targetElement_judgeScore_Fourth_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
-                targetElement_judgeScore_Fifth_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                //testing
+                // let min = 1;
+                // let max = 10;    
+                // targetElement_judgeScore_First_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // targetElement_judgeScore_Second_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // targetElement_judgeScore_Third_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // targetElement_judgeScore_Fourth_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // targetElement_judgeScore_Fifth_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
 
-                if (targetElement_judgeScore_First_Rematch.value == 10.0) {
-                    targetElement_judgeScore_First_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_First_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_First_Rematch.value = 10
+                // }
 
-                if (targetElement_judgeScore_Second_Rematch.value == 10.0) {
-                    targetElement_judgeScore_Second_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_Second_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_Second_Rematch.value = 10
+                // }
 
-                if (targetElement_judgeScore_Third_Rematch.value == 10.0) {
-                    targetElement_judgeScore_Third_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_Third_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_Third_Rematch.value = 10
+                // }
 
-                if (targetElement_judgeScore_Fourth_Rematch.value == 10.0) {
-                    targetElement_judgeScore_Fourth_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_Fourth_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_Fourth_Rematch.value = 10
+                // }
 
-                if (targetElement_judgeScore_Fifth_Rematch.value == 10.0) {
-                    targetElement_judgeScore_Fifth_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_Fifth_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_Fifth_Rematch.value = 10
+                // }
                 // END randomScores
 
                 // AddEvent Listeners
@@ -1074,33 +1075,33 @@ function addRematchTable() { //addRematchTable
                 //END targetElement
 
                 // randomScores Rematch
-                let min = 1;
-                let max = 10;    
-                targetElement_judgeScore_First_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
-                targetElement_judgeScore_Second_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
-                targetElement_judgeScore_Third_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
-                targetElement_judgeScore_Fourth_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
-                targetElement_judgeScore_Fifth_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // let min = 1;
+                // let max = 10;    
+                // targetElement_judgeScore_First_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // targetElement_judgeScore_Second_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // targetElement_judgeScore_Third_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // targetElement_judgeScore_Fourth_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
+                // targetElement_judgeScore_Fifth_Rematch.setAttribute("value", (Math.random() * max).toFixed(1));
 
-                if (targetElement_judgeScore_First_Rematch.value == 10.0) {
-                    targetElement_judgeScore_First_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_First_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_First_Rematch.value = 10
+                // }
             
-                if (targetElement_judgeScore_Second_Rematch.value == 10.0) {
-                    targetElement_judgeScore_Second_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_Second_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_Second_Rematch.value = 10
+                // }
             
-                if (targetElement_judgeScore_Third_Rematch.value == 10.0) {
-                    targetElement_judgeScore_Third_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_Third_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_Third_Rematch.value = 10
+                // }
             
-                if (targetElement_judgeScore_Fourth_Rematch.value == 10.0) {
-                    targetElement_judgeScore_Fourth_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_Fourth_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_Fourth_Rematch.value = 10
+                // }
             
-                if (targetElement_judgeScore_Fifth_Rematch.value == 10.0) {
-                    targetElement_judgeScore_Fifth_Rematch.value = 10
-                }
+                // if (targetElement_judgeScore_Fifth_Rematch.value == 10.0) {
+                //     targetElement_judgeScore_Fifth_Rematch.value = 10
+                // }
                 // END randomScores
 
                 // AddEvent Listeners
