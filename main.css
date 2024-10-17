@@ -12,6 +12,7 @@ body {
     /* background-color: rgba(255, 255, 255, 50%); */
     background-color: pink;
     border-width: 2px;
+    margin-bottom: 10px;
 }
 
 #head_buttons {
@@ -113,12 +114,21 @@ table, td {
     gap: 5px;                   /* Optional: add space between buttons */
 }
 
-.table_header {
+.table_header_rematch {
     text-transform: uppercase;
     color: black;
     text-align: center;
     /* position: sticky; */
-    top: 273px;
+    /* top: 207px; */
+    background-color: pink;
+}
+
+.table_header {
+    text-transform: uppercase;
+    color: black;
+    text-align: center;
+    position: sticky;
+    top: 207px;
     background-color: pink;
 }
 

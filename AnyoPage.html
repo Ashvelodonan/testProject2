@@ -27,6 +27,7 @@
     <main>        
         <div id="head_buttons">
             <div>Rematch Round: <span id="rematchRoundIndicator"></span></div>
+            <button type="button" id="viewTable_button">View</button>
             <button type="button" id="addNewTable_button">Rematch</button>
             <button type="button" id="removeNewTable_button">-</button>
             
@@ -43,17 +44,20 @@
                 </div>
                 <!-- <h2 id="time_indicator">Time: <span id="stopwatch_clock"></span></h2> -->                
                 <!-- <div id="rematch_table"><br></div> -->
-                <p> 
-                    Total Seconds: <span id="total_seconds_indicator"></span>
-                    <button type="button" id="calculate_button">calculate</button>
-                    <button type="button" id="generateNumRows">submit</button> Enter number of players:<input type="number" name="" id="desiredNumberOfRows">
-                    <button type="button" id="addRow_button">+</button>
-                    <button type="button" id="removeRow_button">-</button>
-                    <span>Number of players: <span id="totalNumber_Rows"></span></span>                
-                </p>
+                
             </p>
         </div>
         <div id="rematch_table"><br></div>
+        <div>
+            <p> 
+                Total Seconds: <span id="total_seconds_indicator"></span>
+                <button type="button" id="calculate_button">calculate</button>
+                <button type="button" id="generateNumRows">submit</button> Enter number of players:<input type="number" name="" id="desiredNumberOfRows">
+                <button type="button" id="addRow_button">+</button>
+                <button type="button" id="removeRow_button">-</button>
+                <span>Number of players: <span id="totalNumber_Rows"></span></span>                
+            </p>
+        </div>
         <table id="main_table">
                 <thead class="table_header">
                     <tr>
@@ -88,5 +92,6 @@
     <script src="main.js"></script>
     <script src="stopwatch.js"></script>
     <script src="rematch.js"></script>
+    <!-- <script src="rematchfunc.js"></script> -->
 </body>
 </html>

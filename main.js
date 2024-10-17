@@ -25,7 +25,7 @@ let calculateButton = document.getElementById("calculate_button");
 let generateRowsButton = document.getElementById("generateNumRows");
 let desiredNumRowsInput = document.getElementById("desiredNumberOfRows");
 let customTitleInput = document.getElementById("customTitleInput");
-document.getElementById("desiredNumberOfRows").value = 50;
+document.getElementById("desiredNumberOfRows").value = 10;
 
 //functions
 //
@@ -494,7 +494,7 @@ calculateButton.addEventListener("click", () => { //calculate
                             targetElement_judgeScorePerCol_element.classList.replace("judge_scores", "judge_scores_removed");
                             minHighlighted = true;
                             console.log(minHighlighted);
-                        }    
+                        }
                         if (targetElement_judgeScorePerCol_element.value == maxValue && !maxHighlighted) {
                             console.log(maxValue);
                             targetElement_judgeScorePerCol_element.classList.replace("judge_scores", "judge_scores_removed");
@@ -582,6 +582,7 @@ calculateButton.addEventListener("click", () => { //calculate
                 
                 targetElement_finalScore.value = totalSum.toFixed(1);
                 finalScorePerCol_judgesSum[index] = targetElement_finalScore.value;
+                console.log(finalScorePerCol_judgesSum[index]);
             }
         }
     }
@@ -589,7 +590,8 @@ calculateButton.addEventListener("click", () => { //calculate
     //forloop for rank 
     uniqueSortedValues = [...new Set(finalScorePerCol_judgesSum)].sort((a, b) => b - a);
     rankMap = {};
-    let currentRank = 1;    
+    let currentRank = 1;
+    console.log(uniqueSortedValues);
 
     for (let i = 0; i < uniqueSortedValues.length; i++) {
         if (i > 0 && uniqueSortedValues[i] === uniqueSortedValues[i - 1]) {
