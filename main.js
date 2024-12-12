@@ -1,7 +1,7 @@
 // let PEKAF_title = "balsig";
 // document.getElementById("app_title").textContent = PEKAF_title.toUpperCase();
 // document.getElementById("app_title").style.textAlign = "center";
-document.getElementById("customTitleInput").value = `${"115th Baguio Day"} ${`National Invitational Arnis Tournament`}`;
+document.getElementById("customTitleInput").value = `${"Itogon"} ${`Invitational Arnis Tournament`}`;
 let anyoTitleApp = document.getElementById("anyoTitleApp");
 anyoTitleApp.textContent = "anyo".toUpperCase();
 
@@ -25,6 +25,10 @@ let calculateButton = document.getElementById("calculate_button");
 let generateRowsButton = document.getElementById("generateNumRows");
 let desiredNumRowsInput = document.getElementById("desiredNumberOfRows");
 let customTitleInput = document.getElementById("customTitleInput");
+let countGold = document.getElementById("count_gold");
+let countSilver = document.getElementById("count_silver");
+let countBronze = document.getElementById("count_bronze");
+let randomizeBtn = document.getElementById("randomize_button");
 document.getElementById("desiredNumberOfRows").value = 0; //testing set
 
 //functions
@@ -446,6 +450,9 @@ let duplicates = {};
 let detectedDuplicateJudgeScores = new Set();
 
 calculateButton.addEventListener("click", () => { //calculate
+    let gold = 0;
+    let silver = 0;
+    let bronze = 0;
     finalScorePerCol_judgesSum = [];
     judgeScoreShifted = [];
     judgeScorePopped = [];
@@ -620,17 +627,30 @@ calculateButton.addEventListener("click", () => { //calculate
         if (targetElement_rank.value == 1) {
             targetElement_rank.classList.replace("rank", "rank_gold");
             targetElement_finalScore.classList.replace("finalscore", "finalscore_selected");
+            gold++;
         }
         if (targetElement_rank.value == 2) {
             targetElement_rank.classList.replace("rank", "rank_silver");
             targetElement_finalScore.classList.replace("finalscore", "finalscore_selected");
+            silver++;
         }
         if (targetElement_rank.value == 3) {
             targetElement_rank.classList.replace("rank", "rank_bronze");
             targetElement_finalScore.classList.replace("finalscore", "finalscore_selected");
+            bronze++;
         }
     }    
     console.log(`${rowNumberValue-1}) ${finalScorePerCol_judgesSum}`);
+    console.log("gold", gold);
+    console.log("silver", silver);
+    console.log("bronze", bronze);
+    countGold.textContent = gold.toString();
+    countSilver.textContent = silver.toString();
+    countBronze.textContent = bronze.toString();
+    
+    // let countGold = document.getElementById("count_gold");
+    // let countSilver = document.getElementById("count_silver");
+    // let countBronze = document.getElementById("count_bronze");
 });
 
 customTitleInput.addEventListener("keypress", () => {
@@ -698,5 +718,50 @@ removeRowFieldButton.addEventListener("click", () => {
 });
 //addEventListeners
 //END
+
+randomizeBtn.addEventListener("click", () => {
+    // console.log(randomizeBtn);
+    viewRandomized();
+});
+
+let newWindow = null; // Variable to store the reference to the new window
+
+function viewRandomized() {
+
+    if (newWindow && !newWindow.closed) {
+        newWindow.close();
+    }
+
+    // Get the table rows (excluding header)
+    const table = document.getElementById("main_table");
+    let rows = Array.from(table.rows).slice(2); // Skip the header row
+
+    // Create an array to hold action and competitor data
+    let actionCompetitorData = [];
+
+    // Loop through each row and get the # (Action) and Competitor data
+    rows.forEach(row => {
+        const action = row.cells[3].querySelector('input').value; // Action # from input value
+        const competitor = row.cells[4].querySelector('input').value; // Competitor Name from input value
+        actionCompetitorData.push([action, competitor]);
+    });
+
+    // Shuffle the array to randomize the order
+    actionCompetitorData.sort(() => Math.random() - 0.5);
+
+    // Create a new window to display the randomized list
+    newWindow = window.open('', '', 'width=300,height=500');
+
+    // Write a new table to the new window
+    newWindow.document.write("<table border='1'><tr><th>#</th><th>Competitor</th></tr>");
+
+    // Append randomized rows to the new window
+    actionCompetitorData.forEach(data => {
+        newWindow.document.write(`<tr><td>${data[0]}</td><td>${data[1]}</td></tr>`);
+    });
+
+    // Close the table in the new window
+    newWindow.document.write("</table>");
+}
 
 //https://stackoverflow.com/questions/19199942/add-table-row-with-javascript-onclick

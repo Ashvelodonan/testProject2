@@ -347,3 +347,19 @@ input[type=number] {
   border: none;
   background-color: transparent;
 }
+
+.balsigLogoContainer2 {
+    /* text-align: center; */
+    background: linear-gradient(to bottom, #202854 0%, #000000 5%, #900808 50%, #400000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.balsigLogo {
+    padding: 10px 0 10px 0;
+    width: 380px;
+    height: 350px;
+    margin: 0 20px 0 0;
+    opacity: 15%;
+}

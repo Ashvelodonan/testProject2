@@ -65,8 +65,23 @@ function addRematchTable() { //addRematchTable
     competitorNameHCell.textContent = "competitor".toUpperCase();
 
     var scoresHCell = document.createElement("th");
-    scoresHCell.colSpan = 5;
+    scoresHCell.colSpan = 2;
     scoresHCell.textContent = "scores".toUpperCase();
+
+    var countGHCell = document.createElement("th");
+    countGHCell.textContent = "G:".toUpperCase();
+    var countGHspan = document.createElement("span");
+    countGHspan.id = "count_gold_rematch_"+(rematchRound+1);
+
+    var countSHCell = document.createElement("th");
+    countSHCell.textContent = "S:".toUpperCase();
+    var countSHspan = document.createElement("span");
+    countSHspan.id = "count_silver_rematch_"+(rematchRound+1);
+
+    var countBHCell = document.createElement("th");
+    countBHCell.textContent = "B:".toUpperCase();
+    var countBHspan = document.createElement("span");
+    countBHspan.id = "count_bronze_rematch_"+(rematchRound+1);
 
     var timeStampHCell = document.createElement("th");
     timeStampHCell.className = "timestamp";
@@ -89,8 +104,18 @@ function addRematchTable() { //addRematchTable
 
     headerRow1.appendChild(actionHCell);
     headerRow1.appendChild(playerNumberHCell);
-    headerRow1.appendChild(competitorNameHCell);
+    headerRow1.appendChild(competitorNameHCell);    
     headerRow1.appendChild(scoresHCell);
+
+    countGHCell.appendChild(countGHspan);
+    headerRow1.appendChild(countGHCell);
+
+    countSHCell.appendChild(countSHspan);
+    headerRow1.appendChild(countSHCell);
+
+    countBHCell.appendChild(countBHspan);
+    headerRow1.appendChild(countBHCell);
+
     headerRow1.appendChild(timeStampHCell);
     headerRow1.appendChild(violationsHCell);
     headerRow1.appendChild(finalScoreHCell);
@@ -1124,6 +1149,9 @@ function addRematchTable() { //addRematchTable
                 targetElement_competitorNameInputRematch.click();
 
                 targetElement_calculateButtonRematch.addEventListener("click", () => {
+                    let gold_rematch = 0;
+                    let silver_rematch = 0;
+                    let bronze_rematch = 0;
                     console.log(targetElement_calculateButtonRematch);
                     let totalSum_rematch = 0;
                     for (let i = 0; i < rowNumberValue_Rematch; i++) {
@@ -1354,17 +1382,26 @@ function addRematchTable() { //addRematchTable
                         if (targetElement_rank_rematch.value == 1) {
                             targetElement_rank_rematch.classList.replace("rank", "rank_gold");
                             targetElement_finalScore_rematch.classList.replace("finalscore", "finalscore_selected");
+                            gold_rematch++;
                         }
                         if (targetElement_rank_rematch.value == 2) {
                             targetElement_rank_rematch.classList.replace("rank", "rank_silver");
                             targetElement_finalScore_rematch.classList.replace("finalscore", "finalscore_selected");
+                            silver_rematch++;
                         }
                         if (targetElement_rank_rematch.value == 3) {
                             targetElement_rank_rematch.classList.replace("rank", "rank_bronze");
                             targetElement_finalScore_rematch.classList.replace("finalscore", "finalscore_selected");
+                            bronze_rematch++;
                         }
                     }    
                     console.log(`${rowNumberValue_Rematch-1}) ${finalScorePerCol_judgesSum_rematch}`);
+                    document.getElementById("count_gold_rematch_"+(rematchRound+1)).textContent = gold_rematch.toString();
+                    document.getElementById("count_silver_rematch_"+(rematchRound+1)).textContent = silver_rematch.toString();
+                    document.getElementById("count_bronze_rematch_"+(rematchRound+1)).textContent = bronze_rematch.toString();
+                    // let gold_rematch = 0;
+                    // let silver_rematch = 0;
+                    // let bronze_rematch = 0;
                 });
 
                 targetElement_resetPlayerButtonRematch.addEventListener("click", () => {
