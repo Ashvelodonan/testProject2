@@ -71,7 +71,7 @@ function stopWatch() {
         totalSeconds = minute * 60 + second;
 
         twoChForTimeFormat();
-        setTimeout(stopWatch, 10);
+        setTimeout(stopWatch, 9);
     }
 };
 
