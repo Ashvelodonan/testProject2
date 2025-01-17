@@ -1528,6 +1528,8 @@ function createHeaderCell(text, colspan = 1) {
 
 addNewTableBtn.addEventListener("click", () => {
     console.log("rematchRound", rematchRound);
+    let thRandomizeToHide = document.querySelector("thead tr:nth-child(2) th:first-child");
+    thRandomizeToHide.style.display = "none";
     if (rematchRound == -1) {
         for (let i = 0; i < rowNumberValue; i++) {
             competitor_name_element[i][0].readOnly = true;
@@ -1550,7 +1552,7 @@ addNewTableBtn.addEventListener("click", () => {
                 let rows = document.querySelectorAll("#main_table tbody tr");
                 // Get the first three <td> elements in that row
                 rows.forEach(function(row) {       
-                    let cellsToHide = row.querySelectorAll("td:nth-child(-n+3)");             
+                    let cellsToHide = row.querySelectorAll("td:nth-child(-n+4)");             
                     cellsToHide.forEach(function(cell) {
                         cell.style.display = "none";
                     });

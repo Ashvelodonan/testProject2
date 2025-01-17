@@ -5,37 +5,6 @@ document.getElementById("customTitleInput").value = `${"Itogon"} ${`Invitational
 let anyoTitleApp = document.getElementById("anyoTitleApp");
 anyoTitleApp.textContent = "anyo".toUpperCase();
 
-document.addEventListener('contextmenu', function(event) {
-    event.preventDefault(); // Prevent the context menu from appearing
-    // alert("Right-click is disabled on this page.");
-    // console.log(event);
-});
-
-document.addEventListener('keydown', function(event) {
-    // Check if both Ctrl and Shift keys are pressed
-    if 
-    (
-        (event.ctrlKey && event.shiftKey) ||
-        (event.ctrlKey) || (event.shiftKey)
-    ) {
-        if 
-        (
-            (event.key === 'R' || event.key === 'P') ||
-            (event.ctrlKey && (event.key === 'P' || event.key === 'p')) ||
-            (event.ctrlKey && (event.key === 'R' || event.key === 'r')) ||
-            (event.ctrlKey && (event.key === 'C' || event.key === 'c')) ||
-            (event.ctrlKey && (event.key === 'V' || event.key === 'v')) ||
-            (event.ctrlKey && (event.key === 'X' || event.key === 'x')) ||
-            (event.ctrlKey && (event.key === 'A' || event.key === 'a'))
-        ) {
-            return; // Allow these key combinations
-        }
-        event.preventDefault(); // Prevent default action for any Ctrl + Shift combination
-        // alert('Ctrl + Shift combinations are disabled!');
-        // console.log(event);
-    }
-});
-
 var rowNumberValue = 0;
 let checkBox_element = [];
 let resetPlayer_button_element = [];
@@ -48,6 +17,7 @@ let timeRecord_element = [];
 let timeViolation_element = [];
 let lineViolation_element = [];
 let disarmViolation_element = [];
+let rawScorePerCol_element = [];
 let rank_element = [];
 let totalNumberRows = document.getElementById("totalNumber_Rows");
 let addRowFieldButton = document.getElementById("addRow_button");
@@ -95,6 +65,11 @@ function addRowField() {
     // stopWatchButton.setAttribute("class", "hideElement");
     stopWatchButton.setAttribute("id", "stopWatchButton_" + rowNumberValue);
     stopWatchButton.textContent = "record".toUpperCase();
+
+    var calculateRawButton = document.createElement("button");
+    calculateRawButton.setAttribute("class", "stopWatch_button_record");
+    calculateRawButton.setAttribute("id", "calculate_rawBtn_" + rowNumberValue);
+    calculateRawButton.textContent = "Raw Score".toUpperCase();
 
     var rowNumber = document.createElement("input");
     rowNumber.value = rowNumberValue;
@@ -157,7 +132,7 @@ function addRowField() {
     timeViolation.setAttribute("class", "violations");
     timeViolation.setAttribute("type", "number");
     timeViolation.setAttribute("id", "timeViolation_" + rowNumberValue);
-    timeViolation.setAttribute("readonly", true);
+    // timeViolation.setAttribute("readonly", true); //must not be manual
 
     var lineViolation = document.createElement("input");
     lineViolation.setAttribute("class", "violations");
@@ -174,6 +149,12 @@ function addRowField() {
     // netScore.setAttribute("type", "number");
     // netScore.setAttribute("id", "netScore_" + rowNumberValue);
     // netScore.setAttribute("readonly", true);
+
+    var rawScore = document.createElement("input");
+    rawScore.setAttribute("class", "finalscore");
+    rawScore.setAttribute("type", "number");
+    rawScore.setAttribute("id", "rawScore_" + rowNumberValue);
+    rawScore.setAttribute("readonly", true);
 
     var finalScore = document.createElement("input");    
     finalScore.setAttribute("class", "finalscore");
@@ -200,11 +181,14 @@ function addRowField() {
     var stopWatchButtonCell = currentRow.insertCell(-1);
     stopWatchButtonCell.appendChild(stopWatchButton);
 
+    var calculateRawButtonCell = currentRow.insertCell(-1);
+    calculateRawButtonCell.appendChild(calculateRawButton);
+
     var rowNumberCell = currentRow.insertCell(-1);
     rowNumberCell.appendChild(rowNumber);
 
-    var competitorNameCell = currentRow.insertCell(-1);
-    competitorNameCell.appendChild(competitor_name);
+    // var competitorNameCell = currentRow.insertCell(-1);
+    // competitorNameCell.appendChild(competitor_name);
 
     var judgeScoreCell_First = currentRow.insertCell(-1);
     judgeScoreCell_First.appendChild(judgeScore_First);
@@ -221,6 +205,9 @@ function addRowField() {
     var judgeScoreCell_Fifth = currentRow.insertCell(-1);
     judgeScoreCell_Fifth.appendChild(judgeScore_Fifth);
 
+    var competitorNameCell = currentRow.insertCell(-1);
+    competitorNameCell.appendChild(competitor_name);
+
     var timeStampCell = currentRow.insertCell(-1);
     timeStampCell.appendChild(timeStamp);
 
@@ -233,8 +220,8 @@ function addRowField() {
     var disarmViolationCell = currentRow.insertCell(-1);
     disarmViolationCell.appendChild(disarmViolation);
 
-    // var netScoreCell = currentRow.insertCell(-1);
-    // netScoreCell.appendChild(netScore);
+    var rawScoreCell = currentRow.insertCell(-1);
+    rawScoreCell.appendChild(rawScore);
 
     var finalScoreCell = currentRow.insertCell(-1);
     finalScoreCell.appendChild(finalScore);
@@ -291,12 +278,15 @@ function addRowField() {
     timeViolation_element[rowNumberValue-1] = [timeViolation];
     lineViolation_element[rowNumberValue-1] = [lineViolation];
     disarmViolation_element[rowNumberValue-1] = [disarmViolation];
+    rawScorePerCol_element[rowNumberValue-1] = [rawScore];
     finalScorePerCol_element[rowNumberValue-1] = [finalScore];
     rank_element[rowNumberValue-1] = [rank];
     // END saveElement
 
     console.log(judgesScoresPerCol_element);
     console.log(judgesScoresPerCol_element[rowNumberValue-1]);
+
+    let targetElement_calculateRawButton = document.getElementById("calculate_rawBtn_" + (rowNumberValue))
     
     let targetElement_resetPlayerButton = document.getElementById("resetPlayerButton_"+ (rowNumberValue));
     let targetElement_finalScore = document.getElementById("finalScore_"+ (rowNumberValue));
@@ -309,11 +299,32 @@ function addRowField() {
     let targetElement_judgeScore_Third = document.getElementById("judgeScore_Third_"+ (rowNumberValue));
     let targetElement_judgeScore_Fourth = document.getElementById("judgeScore_Fourth_"+ (rowNumberValue));
     let targetElement_judgeScore_Fifth = document.getElementById("judgeScore_Fifth_"+ (rowNumberValue));
+    let targetElement_rawScore = document.getElementById("rawScore_"+ (rowNumberValue));
 
     let targetElement_stopWatchButton = document.getElementById("stopWatchButton_"+ (rowNumberValue));
     let targetElement_timeRecord = document.getElementById("timeStamp_"+ (rowNumberValue));
     let targetElement_timeViolation = document.getElementById("timeViolation_"+ (rowNumberValue));
     let targetElement_competitorName = document.getElementById("competitor_name_"+ (rowNumberValue));
+
+    targetElement_calculateRawButton.addEventListener("click", () => {
+        console.log(targetElement_calculateRawButton);
+
+        let firstRawScore = parseFloat(parseFloat(targetElement_judgeScore_First.value).toFixed(1));
+        let secondRawScore = parseFloat(parseFloat(targetElement_judgeScore_Second.value).toFixed(1));
+        let thirdRawScore = parseFloat(parseFloat(targetElement_judgeScore_Third.value).toFixed(1));
+        let fourthRawScore = parseFloat(parseFloat(targetElement_judgeScore_Fourth.value).toFixed(1));
+        let fifthRawScore = parseFloat(parseFloat(targetElement_judgeScore_Fifth.value).toFixed(1));
+
+        console.log(typeof firstRawScore);
+        console.log(typeof targetElement_judgeScore_First.value);
+
+        let currentRowRawScoreValue = (
+            firstRawScore + secondRawScore + thirdRawScore +
+            fourthRawScore + fifthRawScore
+        );
+        console.log(currentRowRawScoreValue);
+        targetElement_rawScore.value = currentRowRawScoreValue;
+    });
 
     targetElement_competitorName.addEventListener("keypress", () => {
         updateChWidths();
@@ -368,11 +379,12 @@ function addRowField() {
         console.log(`${rowNumberValue}
             ${targetElement_timeRecord.value}`);
 
-        if (ts <= 59 || ts >= 121) {
-            targetElement_timeViolation.value = 0.5;
-        } else {
-            targetElement_timeViolation.value = 0;
-        }
+        //condition removed
+        // if (ts <= 59 || ts >= 121) {
+        //     targetElement_timeViolation.value = 0.5;
+        // } else {
+        //     targetElement_timeViolation.value = 0;
+        // }
     });   
 
     //Checking strict input
@@ -445,6 +457,7 @@ function removeRowField() {
         timeViolation_element.pop();
         lineViolation_element.pop();
         disarmViolation_element.pop();
+        rawScorePerCol_element.pop();
         finalScorePerCol_element.pop();
         finalScorePerCol_judgesSum.pop();
         judgeScoreShifted.pop();
@@ -493,6 +506,11 @@ calculateButton.addEventListener("click", () => { //calculate
         sortedJudgesScoreCol = [];
         totalSum = 0;
         for (let j = 0; j < judgesScoresPerCol_element[i].length; j++) {
+
+            if (judgesScoresPerCol_element[i][j].value == "") {
+                let zeroDecimal = 0;
+                judgesScoresPerCol_element[i][j].value = parseFloat(zeroDecimal).toFixed(1);
+            }
             
             let judgeScoreCol = parseFloat(judgesScoresPerCol_element[i][j].value);
             judgeScoreCol.toFixed(1);
@@ -573,6 +591,16 @@ calculateButton.addEventListener("click", () => { //calculate
                 rawScoreSum = parseFloat(rawScoreSum.toFixed(1));
                 console.log("rawScore:", rawScoreSum);
             }            
+        }
+
+        if (timeViolation_element[i][0].value == "") {
+            timeViolation_element[i][0].value = 0;
+        }
+        if (lineViolation_element[i][0].value == "") {
+            lineViolation_element[i][0].value = 0;
+        }
+        if (disarmViolation_element[i][0].value == "") {
+            disarmViolation_element[i][0].value = 0;
         }
 
         totalSum = rawScoreSum - 
@@ -772,8 +800,8 @@ function viewRandomized() {
 
     // Loop through each row and get the # (Action) and Competitor data
     rows.forEach(row => {
-        const action = row.cells[3].querySelector('input').value; // Action # from input value
-        const competitor = row.cells[4].querySelector('input').value; // Competitor Name from input value
+        const action = row.cells[4].querySelector('input').value; // Action # from input value
+        const competitor = row.cells[10].querySelector('input').value; // Competitor Name from input value
         actionCompetitorData.push([action, competitor]);
     });
 
